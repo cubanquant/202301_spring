@@ -20,7 +20,29 @@ def downloadData(url):
 
 
 def processData(file_content):
-    pass
+    result = dict()
+    lines = file_content.split("\n")
+    header = True
+    for line in lines:
+        # deals with the header
+        if header:
+            header = False
+            continue
+        # deals with empty lines
+        if len(line) == 0:
+            continue
+
+        elements = line.split(",")
+        id = int(elements[0])
+        name = elements[1]
+        try:
+            birthday = datetime.datetime.strptime(elements[2], "%d/%m/%Y")
+            result[id] = (name, birthday)
+            print(id, name, birthday)
+        except ValueError:
+            print(f"************ Could not parse {elements[2]} to a date in format dd/mm/YYYY **********")
+
+    return result
 
 
 def displayPerson(id, personData):
@@ -30,7 +52,12 @@ def displayPerson(id, personData):
 def main(url):
     print(f"Running main with URL = {url}...")
     url_data = downloadData(url)
-    print(url_data)
+    processed_data = processData(url_data)
+    while True:
+        id = int(input("Enter an ID to search: "))
+        if id < 0:
+            break
+        displayPerson(id, processed_data)
 
 
 if __name__ == "__main__":

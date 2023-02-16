@@ -34,6 +34,7 @@ def process_data(urldata):
         "Chrome": 0,
         "Firefox": 0
     }
+    hours_accessed = {hour: 0 for hour in range(24)}
     csv_data = csv.reader(io.StringIO(urldata))
     image_counter = 0
     for row in csv_data:
@@ -42,21 +43,26 @@ def process_data(urldata):
         browser = row[2]
         # GIF, JPG, JPEG, PNG
         # Try to do this with a regular expression
-        extension = path_to_file.upper().split(".")[-1]
-        if extension in ["JPEG", "JPG", "GIF", "PNG"]:
+        if re.search(r"\.JPG|.JPEG|\.GIF|\.PNG", path_to_file, re.IGNORECASE):
             image_counter = image_counter + 1
 
         # check the "browser" for specific string: Safari, Firefox, Chrome or MSIE
         if "Safari" in browser:
             browser_count["Safari"] += 1
+        elif "Firefox" in browser:
+            browser_count["Firefox"] += 1
+        # do the same for the other browser
+
+        most_popular_browser = max(browser_count, key=browser_count.get)
 
         # Convert datetime_access_str to datetime
         access_time = datetime.datetime.strptime(datetime_access_str, "%Y-%m-%d %H:%M:%S")
-        print(access_time.hour)
+        hours_accessed[access_time.hour] += 1
 
     print(f"Image count = {image_counter}")
     # after you have all the browser counts, find the highest
     print(f"Safari count = {browser_count['Safari']}")
+    print(hours_accessed)
 
 
 def main(url):

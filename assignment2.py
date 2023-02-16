@@ -46,6 +46,13 @@ def processData(file_content):
 
 
 def displayPerson(id, personData):
+    """
+    Giving an ID and dict with ID as key, find the user under that ID
+
+    :param id:
+    :param personData:
+    :return:
+    """
     pass
 
 

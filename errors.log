@@ -1,0 +1,2 @@
+ERROR:root:Error occurred while processing data from the URL: invalid literal for int() with base 10: 'name'
+ERROR:root:Error occurred while processing data from the URL: invalid literal for int() with base 10: 'name'

@@ -53,15 +53,16 @@ def process_data(urldata):
             browser_count["Firefox"] += 1
         # do the same for the other browser
 
-        most_popular_browser = max(browser_count, key=browser_count.get)
-
         # Convert datetime_access_str to datetime
         access_time = datetime.datetime.strptime(datetime_access_str, "%Y-%m-%d %H:%M:%S")
         hours_accessed[access_time.hour] += 1
 
-    print(f"Image count = {image_counter}")
-    # after you have all the browser counts, find the highest
     print(f"Safari count = {browser_count['Safari']}")
+    print(f"Image count = {image_counter}")
+
+    # after you have all the browser counts, find the highest and print the result
+    most_popular_browser = max(browser_count, key=browser_count.get)
+
     print(hours_accessed)
 
 

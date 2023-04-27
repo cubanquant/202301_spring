@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Say Hello {{ userparam }}</title>
+</head>
+<body>
+
+<h1>Just saying Hello to {{ userparam }}</h1>
+
+Hello <b>{{ userparam }}</b>
+<br><br>
+Saying hello to everybody:
+<ul>
+{% for name in names %}
+    <li>Say hello to {{ name }} <a href="/erase/{{ name }}">Delete?</a> </li>
+{% endfor %}
+</ul>
+
+<br><br>
+<a href="/helloform">Link to the Hello Form</a>
+
+</body>
+</html>

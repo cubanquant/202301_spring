@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h2>List of Students</h2>
+<table border="1">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Delete?</td>
+    </tr>
+    {% for row in students %}
+    <tr>
+        <td>{{ row['first'] }}</td>
+        <td>{{ row['last'] }}</td>
+        <td><a href="/deletestudent/{{ row['student_id'] }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+<a href="/addstudent">Add a Student</a>
+<br><br>
+
+<h2>List of Quizzes</h2>
+<table border="1">
+    <tr>
+        <td>Subject</td>
+        <td>Questions</td>
+        <td>Date</td>
+        <td>View Results</td>
+    </tr>
+    {% for row in quizzes %}
+    <tr>
+        <td>{{ row['subject'] }}</td>
+        <td>{{ row['questions'] }}</td>
+        <td>{{ row['quiz_date'] }}</td>
+        <td><a href="/viewresult/{{ row['quiz_id'] }}">Click to view results</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+
+
+</body>
+</html>
